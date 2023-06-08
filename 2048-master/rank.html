@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body{
+      background: #faf8ef;
+    }
+  </style>
+</head>
+<body>
+  <h1 align="center" style="color: #776e65; margin-top: 100px;">排行榜</h1>
+  
+  <table style="border-radius: 20px; margin: auto;margin-top: 50px;width: 500px;height: 400px; color:#f9f6f2; background: #bbada0; text-align: center;">
+    <tbody>
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Score</th>
+      </tr>
+      <tr>
+        <td id="no1">1</td>
+        <td id="name1">Jill</td>
+        <td id="email1">Smith.com</td>
+        <td id="score1">500</td>
+      </tr>
+      <tr>
+        <td id="no2">2</td>
+        <td id="name2">Eve</td>
+        <td id="email2">Jackson.com</td>
+        <td id="score2">394</td>
+      </tr>
+      <tr>
+        <td id="no3">3</td>
+        <td id="name3">John</td>
+        <td id="email3">Doe.com</td>
+        <td id="score3">280</td>
+      </tr>
+      <tr>
+        <td id="no4">4</td>
+        <td id="name4">Adam</td>
+        <td id="email4">Jack.com</td>
+        <td id="score4">268</td>
+      </tr>
+      <tr>
+        <td id="no5">5</td>
+        <td id="name5">Adam</td>
+        <td id="email5">Johnson.com</td>
+        <td id="score5">160</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  var url = 'http://localhost:3000/api/rank/best'
+  axios.post(url, {}).then(function (res) {
+    var list = res.data.user;
+    document.getElementById("name1").innerText = list[0].username;
+    document.getElementById("name2").innerText = list[1].username;
+    document.getElementById("name3").innerText = list[2].username;
+    document.getElementById("name4").innerText = list[3].username;
+    document.getElementById("name5").innerText = list[4].username;
+    document.getElementById("email1").innerText = list[0].email;
+    document.getElementById("email2").innerText = list[1].email;
+    document.getElementById("email3").innerText = list[2].email;
+    document.getElementById("email4").innerText = list[3].email;
+    document.getElementById("email5").innerText = list[4].email;
+    document.getElementById("score1").innerText = list[0].best;
+    document.getElementById("score2").innerText = list[1].best;
+    document.getElementById("score3").innerText = list[2].best;
+    document.getElementById("score4").innerText = list[3].best;
+    document.getElementById("score5").innerText = list[4].best;
+  })
+
+</script>
+</html>

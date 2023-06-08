@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>个人信息</title>
+  <style>
+    body {
+      background: #faf8ef;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="background-color: #a0988f;margin-left: 30%;margin-right: 30%;margin-top: 30px; border-radius: 10px;">
+    <h1 align="center" style="color: #f9f6f2; font-size: 23px;">个人信息表</h1>
+    <h2 align="center" style="margin-top:10px"><img id="tx" style="width: 80px; height: 80px;border-radius: 50%;"></h2>
+    <h3 align="center" style="padding-bottom: 10px; color: #f9f6f2; font-size: 15px;"><input type="file" id="toux"
+        style="opacity: 0; position:absolute;" onchange=change() />点击更换头像</h3>
+  </div>
+
+
+  <table
+    style="border-radius: 20px; margin: auto;margin-top: 30px;width: 350px;height: 100px; color:#776e65;text-align: center;">
+    <tr>
+      <td
+        style="width: 120px; height: 40px; font-size: 18px; background-color: #8f7a66; border:0cm; color:#f9f6f2; border-radius: 3px;">
+        姓名</td>
+      <td>
+        <input id="name" style="width: 50px; color: #8f7a66; border:1px solid #8f7a66; border-radius: 3px;"></input>
+        <button onclick="change1()" style="width: 60px; height: 20px; font-size: 10px; background-color: #8f7a66; border:0cm; color:#f9f6f2; border-radius: 3px;">更换昵称</button>
+      </td>
+    </tr>
+    <tr>
+      <td
+        style="width: 120px; height: 40px; font-size: 18px; background-color: #8f7a66; border:0cm; color:#f9f6f2; border-radius: 3px;">
+        电子邮箱</td>
+      <td><span id="email"></span></td>
+    </tr>
+  </table>
+</body>
+
+</html>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+  var url = 'http://localhost:3000/api/users/login'
+  var url1 = 'http://localhost:3000/api/img'
+  var url2 = 'http://localhost:3000/api/name'
+  var user = {
+    email: localStorage.email,
+    password: localStorage.password
+  }
+  axios.post(url, {
+    user
+  }).then(function (res) {
+    localStorage.setItem("img", res.data.user.image);
+    document.getElementById("name").value = res.data.user.username
+    document.getElementById("email").innerText = res.data.user.email
+  })
+  document.getElementById("tx").src = JSON.parse(localStorage.img)
+
+
+  function change() {
+    var file = document.getElementById("toux").files[0];
+    if (window.FileReader) {
+      var fr = new FileReader();
+      fr.readAsDataURL(file);
+      fr.onload = function () {
+        document.getElementById("tx").src = fr.result;
+        localStorage.setItem("img", JSON.stringify(fr.result));
+        var img = {
+          email: localStorage.email,
+          image: localStorage.img
+        }
+        axios.post(url1, {
+          img
+        }).then(function (res) {}).catch(function (error) {
+          alert("图片过大");
+        })
+      }
+
+    }
+
+  }
+
+
+  function change1() {
+    var name1 = document.getElementById("name").value
+    var uname = {
+      email: localStorage.email,
+      name: name1
+    }
+    //console.log(user);
+    axios.post(url2, {
+      uname
+    }).then(function (res) {
+      console.log(res);
+      localStorage.setItem("username", res.data.username);
+      document.getElementById("name").value = res.data.username
+      alert("修改成功!");
+    }).catch(function (error) {
+      alert("用户名重复!");
+    })
+  }
+</script>

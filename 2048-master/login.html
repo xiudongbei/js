@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            background: #faf8ef;
+        }
+         
+        html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+         
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+         
+        input{
+            text-align: center;
+            border:none; 
+            background-color: rgba(239, 248, 250, 0.1);
+            border-bottom:1px solid #bbada0;
+            width: 200px;
+            
+        }
+ 
+        #L_login {
+            border-color: cornsilk;
+            background-color: #bbada0;
+            color: aliceblue;
+            border-style: hidden;
+            border-radius: 5px;
+            width: 100px;
+            height: 31px;
+            font-size: 16px;
+        }
+ 
+        #L_register {
+            border-color: cornsilk;
+            background-color: #bbada0;
+            color: aliceblue;
+            border-style: hidden;
+            border-radius: 5px;
+            width: 100px;
+            height: 31px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+ 
+<body>
+    <div id="loginDiv">
+        <form action="" id="form">
+            <table>
+                <h2 style="text-align: center; color: #776e65;">立即登录</h2></br>
+                <tr><td style="text-align: center; color: gray;">邮箱</td></tr>
+                <tr><td><input class="line" type="text" id="L_email"></td></tr>
+                <tr><td style="text-align: center; color: gray;">密码</td></tr>
+                <tr><td > <input class="line" type="password" placeholder="密码长度至少为6位" id="L_pwd"></td></tr>
+           </table>
+        </br>
+        <div style="text-align: center;margin-top: 15px;">
+            <input type="button" id="L_login" value="登录" onclick=jump1()>
+            <input type="button" id="L_register" value="注册" onclick=jump2()>
+        </div>
+        </form>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        L_email.onchange = function(){
+		var L_email = this.value;
+		var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+		if(!reg.test(L_email)){
+			alert("邮箱格式不正确，请重新输入！");
+            return false;  
+		}
+	    }
+        L_pwd.onchange = function(){
+		var L_pwd = this.value;
+		var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,}$/;
+		if(!reg.test(L_pwd)){
+            alert("密码长度要大于6位，由数字和字母组成,请重新输入！");
+            return false;  
+		}
+	    }
+ 
+        function jump2(){
+           window.location.href="register.html";
+        }
+    </script>
+</body>
+</html>
