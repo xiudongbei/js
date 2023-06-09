@@ -1,0 +1,94 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@createdAt = {{$datetime iso8601}}
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJlbWFpbCI6Impha2VAamFrZS5qYWtlIiwiaWF0IjoxNjIxODQ0NjU4fQ.Xk2fPsiEohMhmrmu6Ze2O-QI5AhoR7g9ZwPlxzdKR3Q
+@token1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwiZW1haWwiOiJqYWtlMUBqYWtlLmpha2UiLCJpYXQiOjE2MjE4OTA4MDB9.fx5nD6_MjXLPzO-QQswu22HsOwDivI_3-AU0fIoRv64
+
+### 注册
+POST /api/users
+host: {{host}}
+content-type: {{contentType}}
+
+{
+  "user":{
+    "email": "jake@jake.jake",
+    "password": "jakejake",
+    "username": "test",
+    "image": "1.jpg"
+  }
+}
+### 登录
+POST /api/users/login
+host: {{host}}
+content-type: {{contentType}}
+
+{
+  "user":{
+    "email": "123@qq.com",
+    "password": "yhn123"
+  }
+}
+
+###
+POST /api/best
+host: {{host}}
+content-type: {{contentType}}
+
+{
+  "best":{
+    "email": "123@qq.com",
+    "best": 123
+  }
+}
+
+###
+POST /api/rank/best
+host: {{host}}
+content-type: {{contentType}}
+
+
+### 查看当前用户
+GET /api/user
+host: {{host}}
+content-type: {{contentType}}
+Authorization: Token {{token}}
+
+###
+PATCH  /api/user
+host: {{host}}
+content-type: {{contentType}}
+Authorization: Token {{token1}}
+
+{
+  "user":{
+    "image":"/b.png",
+    "info": "asdfasdf"
+  }
+}
+
+###
+POST /api/img
+host: {{host}}
+content-type: {{contentType}}
+
+{
+  "img":{
+    "email": "123@qq.com",
+    "image": "/a.jpg"
+  }
+}
+
+###
+POST /api/name
+host: {{host}}
+content-type: {{contentType}}
+
+
+{
+  "uname":{
+    "email": "123@123.com",
+    "name": "sdhuah"
+  }
+}
