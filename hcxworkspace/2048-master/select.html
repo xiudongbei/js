@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      background: #faf8ef;
+    }
+
+    html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+  </style>
+</head>
+
+<body>  
+  <h1 align = "center" style="color: #776e65;  margin-top:200px;">请选择难度</h1>
+  <table style="margin:auto;margin-top: 50px;">
+    <tr>
+      <td><button style="width: 120px; height: 40px; font-size: 18px; background-color: #8f7a66; border:0cm; color:#f9f6f2; border-radius: 3px;" onclick="to4()">4x4(难)</button></td> 
+      <td><button style="width: 120px; height: 40px; font-size: 18px; background-color: #8f7a66; border:0cm; color:#f9f6f2; border-radius: 3px;" onclick="to5()">5x5(中)</button></td>
+      <td><button style="width: 120px; height: 40px; font-size: 18px; background-color: #8f7a66; border:0cm; color:#f9f6f2; border-radius: 3px;" onclick="to6()">6x6(易)</button></td>
+    </tr>
+  </table>
+
+</body>
+<script>
+  function to4() {
+    localStorage.setItem("state", localStorage.gameState)
+    localStorage.setItem("gameState", localStorage.gameState1)
+    localStorage.setItem("gameState1", localStorage.state)
+    localStorage.setItem("gameState.grid.size", 4)
+    window.location.href = "index.html";
+  }
+
+  function to5() {
+    localStorage.setItem("state", localStorage.gameState)
+    localStorage.setItem("gameState", localStorage.gameState1)
+    localStorage.setItem("gameState1", localStorage.state)
+    localStorage.setItem("gameState.grid.size", 5)
+    window.location.href = "index1.html";
+  }
+
+  function to6() {
+    localStorage.setItem("state", localStorage.gameState)
+    localStorage.setItem("gameState", localStorage.gameState1)
+    localStorage.setItem("gameState1", localStorage.state)
+    localStorage.setItem("gameState.grid.size", 6)
+    window.location.href = "index2.html";
+  }
+</script>
+
+</html>

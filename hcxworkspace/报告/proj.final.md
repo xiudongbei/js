@@ -42,6 +42,8 @@
 
    1. 项目 是基于现有的2048游戏代码开发(https://github.com/gabrielecirulli/2048)
 
+      - 服务端 参考[conduit-node-js-master]([sigcc/Conduit_NodeJS (gitee.com)](https://gitee.com/sigcc/conduit-node-js))
+
       - 改进 xxx模块 功能1
 
       - 改进 xxx模块 功能1
@@ -59,8 +61,6 @@
         - 开发  用户资料模块  功能  支持用户修改自身昵称
         - 改进  2048模块 功能 2048小游戏主体
         ```
-
-        
 
 1. 解决技术要点说明
 

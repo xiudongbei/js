@@ -1,5 +1,14 @@
+
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
+// const sequelize = new Sequelize(
+    
+//     {
+//         dialect: 'sqlite',
+//         storage: 'app.db'
+//       }
+
+// );
 
 const sequelize = new Sequelize('app','root','123456',{
     dialect: 'mysql',
@@ -19,3 +28,4 @@ const jane =  User.create({
   }).catch(err=>console.log(err));
   
 // const users =  User.findAll().then(data => console.log(data));
+
