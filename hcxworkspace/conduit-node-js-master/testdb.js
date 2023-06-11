@@ -18,4 +18,3 @@ const jane =  User.create({
     birthday: new Date,
   }).catch(err=>console.log(err));
   
-// const users =  User.findAll().then(data => console.log(data));
