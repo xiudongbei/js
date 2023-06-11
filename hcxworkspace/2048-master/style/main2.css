@@ -185,7 +185,7 @@ hr {
 
 .game-container {
 	margin-top: 40px;
-	margin-left: -125px;
+	margin-left: -60px;
 	position: relative;
 	padding: 15px;
 	cursor: default;
@@ -198,8 +198,8 @@ hr {
 	touch-action: none;
 	background: #bbada0;
 	border-radius: 6px;
-	width: 740px;
-	height: 740px;
+	width: 620px;
+	height: 620px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -845,8 +845,8 @@ hr {
 		touch-action: none;
 		background: #bbada0;
 		border-radius: 6px;
-		width: 420px;
-		height: 420px;
+		width: 350px;
+		height: 350px;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;

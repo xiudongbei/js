@@ -47,9 +47,7 @@ Authorization: Token {{token}}
 
 {
   "user":{
-    "bio": "bio ",
-    "image":"/b.png",
-    "info": "asdfasdf"
+    "email": "jake2@jake.jake"
   }
 }
 

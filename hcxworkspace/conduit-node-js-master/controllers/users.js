@@ -68,12 +68,10 @@ module.exports.loginUser = async (req,res) => {
 
 module.exports.getUserByEmail = async (req,res) => {
     try{
-        const user = await User.findByPk(req.user.email)
+        const user = await User.findAll({ where: { email: req.user.email } })
         if(!user){
             throw new Error('No such user found')
         }
-        delete user.dataValues.password
-        user.dataValues.token = req.header('Authorization').split(' ')[1]
         return res.status(200).json({user})
     }catch(e){
         return res.status(404).json({
@@ -81,6 +79,23 @@ module.exports.getUserByEmail = async (req,res) => {
         })
     }
 }
+
+module.exports.deleteUserByEmail = async (req,res) => {
+    try{
+        const count = await User.destroy({ 
+            where: { email: req.body.user.email }
+        });
+        if(!count){
+            throw new Error('No such user found')
+        }
+        return res.status(200).json({count})
+    }catch(e){
+        return res.status(404).json({
+            errors: { body: [ e.message ] }
+        })
+    }
+}
+
 module.exports.updateBest = async (req,res) => {
     try{
         const user = await User.findByPk(req.body.best.email)
@@ -98,11 +113,22 @@ module.exports.updateBest = async (req,res) => {
 
 module.exports.getUserByBest = async (req,res) => {
     try{
-        const user = await User.findAll({
-            order: [['best', 'DESC']],
-            limit: 5
-        })
-        return res.status(200).json({user})
+        if (req.body.user.username) {
+            console.log(req.body.user)
+            const user = await User.findByPk(req.body.user.email);
+            if (user) {
+              const result = await user.destroy();
+              console.log(result);
+            }
+            return res.status(200).json({user})
+        }else{
+            const user = await User.findAll({
+                where: { email: req.body.user.email },
+                order: [['best', 'DESC']],
+                limit: 5
+            })
+            return res.status(200).json({user})
+        }
     }catch(e){
         return res.status(404).json({
             errors: { body: [ e.message ] }
