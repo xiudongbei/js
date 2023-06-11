@@ -128,6 +128,33 @@ paths:
       security:
         - Token: []
       x-codegen-request-body-name: body
+    post:
+      tags:
+        - User and Authentication
+      summary: find a user
+      description: find a new user
+      operationId: FindUser
+      requestBody:
+        description: Details of the new user to find
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUserRequest'
+        required: true
+      responses:
+        201:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        422:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorModel'
+      x-codegen-request-body-name: body
   /profiles/{username}:
     get:
       tags:

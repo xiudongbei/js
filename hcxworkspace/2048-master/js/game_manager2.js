@@ -17,7 +17,7 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
 GameManager.prototype.restart = function () {
   this.storageManager.clearGameState();
   this.actuator.continueGame(); // Clear the game won/lost message
-  this.setup(); 
+  this.setup();
 };
 
 // Keep playing after winning (allows going over 2048)
@@ -88,8 +88,7 @@ GameManager.prototype.addRandomTile = function () {
 
 // Sends the updated grid to the actuator
 GameManager.prototype.actuate = function () {
-    
-
+   
   if (this.storageManager.getBestScore() < this.score) {
     this.storageManager.setBestScore(this.score);
     var url = 'http://localhost:3000/api/best'
@@ -106,7 +105,7 @@ GameManager.prototype.actuate = function () {
       })
     
   }
-
+  
 
   // Clear the state when the game is over (game over only, not win)
   if (this.over) {
@@ -192,9 +191,8 @@ GameManager.prototype.move = function (direction) {
 
           // Update the score
           self.score += merged.value;
-
           // The mighty 2048 tile
-          if (merged.value === 2048) self.won = true;
+          if (merged.value === 4096) self.won = true;
         } else {
           self.moveTile(tile, positions.farthest);
         }
@@ -269,7 +267,7 @@ GameManager.prototype.movesAvailable = function () {
 // Check for available matches between tiles (more expensive check)
 GameManager.prototype.tileMatchesAvailable = function () {
   var self = this;
-  console.log(self)
+
   var tile;
 
   for (var x = 0; x < this.size; x++) {
@@ -277,7 +275,7 @@ GameManager.prototype.tileMatchesAvailable = function () {
       tile = this.grid.cellContent({ x: x, y: y });
 
       if (tile) {
-        for (var direction = 0; direction < 4; direction++) {
+        for (var direction = 0; direction < 5; direction++) {
           var vector = self.getVector(direction);
           var cell   = { x: x + vector.x, y: y + vector.y };
 

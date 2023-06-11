@@ -1,27 +1,26 @@
-//  models\User.js
 const {DataTypes} = require('sequelize')
 const sequelize = require('../dbConnection')
 
 const User = sequelize.define('User',{
-    email:{ //用户邮箱(即账号)
+    email:{
         type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true
     },
-    username:{  //用户名称
+    username:{
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    best: { //用户最好成绩
+    best: {
         type: DataTypes.INTEGER,
         allowNull: true
     },
-    image: {    //用户头像
+    image: {
         type: DataTypes.TEXT,
         allowNull: true
     },
-    password: { //用户密码
+    password: {
         type: DataTypes.STRING,
         allowNull: false
     }
@@ -31,3 +30,9 @@ const User = sequelize.define('User',{
 
 
 module.exports = User
+
+/* {
+  "user": {
+    "token": "jwt.token.here",
+  }
+} */
