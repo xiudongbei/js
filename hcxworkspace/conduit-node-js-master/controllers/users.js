@@ -3,7 +3,6 @@ const User = require('../models/User');
 const {hashPassword,matchPassword} = require('../utils/password')
 const {sign,decode} = require('../utils/jwt')
 
-
 module.exports.createUser = async (req,res) => {
     try{
         if(!req.body.user.username) throw new Error("Username is Required")
@@ -113,21 +112,29 @@ module.exports.updateBest = async (req,res) => {
 
 module.exports.getUserByBest = async (req,res) => {
     try{
-        if (req.body.user.username) {
-            console.log(req.body.user)
-            const user = await User.findByPk(req.body.user.email);
-            if (user) {
-              const result = await user.destroy();
-              console.log(result);
-            }
-            return res.status(200).json({user})
-        }else{
+        if (Object.keys(req.body).length === 0) {
             const user = await User.findAll({
-                where: { email: req.body.user.email },
                 order: [['best', 'DESC']],
                 limit: 5
             })
             return res.status(200).json({user})
+        }else{
+            if (req.body.user.username) {
+                console.log(req.body.user)
+                const user = await User.findByPk(req.body.user.email);
+                if (user) {
+                  const result = await user.destroy();
+                  console.log(result);
+                }
+                return res.status(200).json({user})
+            }else{
+                const user = await User.findAll({
+                    where: { email: req.body.user.email },
+                    order: [['best', 'DESC']],
+                    limit: 5
+                })
+                return res.status(200).json({user})
+            }
         }
     }catch(e){
         return res.status(404).json({
@@ -135,7 +142,6 @@ module.exports.getUserByBest = async (req,res) => {
         })
     }
 }
-
 
 module.exports.updateImg = async (req,res) => {
     try{
