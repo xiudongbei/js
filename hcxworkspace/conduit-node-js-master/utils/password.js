@@ -22,14 +22,3 @@ module.exports.matchPassword = (hash,password) => {
         })
     })
 }
-
-//TESTING
-/* async function test() {
-    const pass = 'asdf'
-    const hash = await hashPassword(pass)
-    console.log("HASH:",hash); 
-    const match = await matchPassword(hash,'asdf')
-    console.log("Password matches:",match);
-}
-
-test(); */

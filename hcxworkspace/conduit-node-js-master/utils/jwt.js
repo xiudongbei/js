@@ -26,17 +26,3 @@ module.exports.decode = async (token) => {
         })
     })
 }
-
-//TESTING
-/* const test = async () => {
-    const data = {
-        username: 'Varun',
-        email:' varun'
-    }
-    const token = await sign(data)
-    console.log("token is:",token);
-    const decoded = await decode(token)
-    console.log("DEcoded:",decoded);
-}
-
-test() */
