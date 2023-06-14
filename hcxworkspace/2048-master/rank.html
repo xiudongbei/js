@@ -62,24 +62,52 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
   var url = 'http://localhost:3000/api/rank/best'
+  // axios.post(url, {}).then(function (res) {
+  //   var list = res.data.user;
+  //   console.log(list)
+  //   document.getElementById("name1").innerText = list[0].username;
+  //   document.getElementById("name2").innerText = list[1].username;
+  //   document.getElementById("name3").innerText = list[2].username;
+  //   document.getElementById("name4").innerText = list[3].username;
+  //   document.getElementById("name5").innerText = list[4].username;
+  //   document.getElementById("email1").innerText = list[0].email;
+  //   document.getElementById("email2").innerText = list[1].email;
+  //   document.getElementById("email3").innerText = list[2].email;
+  //   document.getElementById("email4").innerText = list[3].email;
+  //   document.getElementById("email5").innerText = list[4].email;
+  //   document.getElementById("score1").innerText = list[0].best;
+  //   document.getElementById("score2").innerText = list[1].best;
+  //   document.getElementById("score3").innerText = list[2].best;
+  //   document.getElementById("score4").innerText = list[3].best;
+  //   document.getElementById("score5").innerText = list[4].best;
+  // })
   axios.post(url, {}).then(function (res) {
-    var list = res.data.user;
-    console.log(list)
-    document.getElementById("name1").innerText = list[0].username;
-    document.getElementById("name2").innerText = list[1].username;
-    document.getElementById("name3").innerText = list[2].username;
-    document.getElementById("name4").innerText = list[3].username;
-    document.getElementById("name5").innerText = list[4].username;
-    document.getElementById("email1").innerText = list[0].email;
-    document.getElementById("email2").innerText = list[1].email;
-    document.getElementById("email3").innerText = list[2].email;
-    document.getElementById("email4").innerText = list[3].email;
-    document.getElementById("email5").innerText = list[4].email;
-    document.getElementById("score1").innerText = list[0].best;
-    document.getElementById("score2").innerText = list[1].best;
-    document.getElementById("score3").innerText = list[2].best;
-    document.getElementById("score4").innerText = list[3].best;
-    document.getElementById("score5").innerText = list[4].best;
+    // 获取后端返回的排行榜数据，并根据分数进行排序
+    var list = res.data.user.sort((a, b) => b.best - a.best)
+
+    // 初始化排名和上一位用户的分数
+    var rank = 1
+    var lastScore = list[0].best
+
+    // 遍历排行榜数据，并为每个用户生成编号
+    for (var i = 0; i < list.length; i++) {
+      var user = list[i]
+      var no = document.getElementById('no' + (i + 1))
+      
+      // 如果当前用户分数与上一位用户分数相同，则编号相同
+      if (user.best === lastScore) {
+        no.textContent = rank
+      } else { // 否则，更新排名和编号，并记录当前用户分数
+        rank = i + 1
+        no.textContent = rank
+        lastScore = user.best
+      }
+
+      // 更新用户的姓名、邮箱和分数
+      document.getElementById('name' + (i + 1)).textContent = user.username
+      document.getElementById('email' + (i + 1)).textContent = user.email
+      document.getElementById('score' + (i + 1)).textContent = user.best
+    }
   })
   function togame() {
     window.history.back();
