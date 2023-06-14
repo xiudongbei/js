@@ -32,8 +32,8 @@
     | 技术点          | 自评等级:(1-5) | 备注 |
     |:--|:--:|---|
     | axios        |3|      |
-    | express框架 |4|      |
-    | ORM 工具（sequeliaze） |3|      |
+    | express框架 |3|      |
+    | ORM 工具（sequeliaze） |4|      |
     
 1. 项目说明
 
