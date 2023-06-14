@@ -33,8 +33,7 @@
     |:--|:--:|---|
     | axios        |3|      |
     | express框架 |4|      |
-    | ORM 工具    |3|      |
-    | sequeliaze |4|      |
+    | ORM 工具（sequeliaze） |3|      |
     
 1. 项目说明
 
