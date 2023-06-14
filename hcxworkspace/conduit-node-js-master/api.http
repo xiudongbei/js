@@ -15,11 +15,12 @@ content-type: {{contentType}}
 
 {
   "user":{
-    "email": "jake2@jake.jake",
+    "email": "1063128089@jake.jake",
     "password": "jakejake",
-    "username": "test3"
+    "username": "test34"
   }
 }
+
 ### 登录
 POST /api/users/login
 host: {{host}}
@@ -27,90 +28,45 @@ content-type: {{contentType}}
 
 {
   "user":{
-    "email": "jake2@jake.jake",
-    "password": "jakejake"
+    "email": "1063128044@qq.com",
+    "password": "huchenxin123"
   }
 }
 
-
-### 查看当前用户
-GET /api/user
+###管理员添加
+POST /api/users
 host: {{host}}
 content-type: {{contentType}}
-Authorization: Token {{token}}
-
-###
-PATCH  /api/user
-host: {{host}}
-content-type: {{contentType}}
-Authorization: Token {{token}}
 
 {
   "user":{
-    "email": "jake2@jake.jake"
+    "email": "1063128034@jake.jake",
+    "password": "jakejake",
+    "username": "test3"
   }
 }
 
-###
-GET /api/profiles/test3
-host: {{host}}
-content-type: {{contentType}}
-Authorization: Token {{token1}}
 
-###
-POST /api/profiles/test3/follow
+### 查询用户
+POST /api/user
 host: {{host}}
 content-type: {{contentType}}
-Authorization: Token {{token}}
-
-###
-POST /api/articles
-host: {{host}}
-content-type: {{contentType}}
-Authorization: Token {{token}}
 
 {
-  "article": {
-    "title": "How to tt train your dragon af c",
-    "description": "Ever wonder how?",
-    "body": "You have to believe",
-    "tagList": ["reactjs", "angularjs", "cs", "js" ,"c","dragons"]
+  "user":{
+    "email": "1063128044@qq.com"
   }
 }
-###
-GET /api/articles?author=test
+
+
+### 删除用户
+POST /api/duser
 host: {{host}}
 content-type: {{contentType}}
 
-
-
-###
-POST /api/articles/how-to-train-your-dragon-af-c/favorite
-host: {{host}}
-content-type: {{contentType}}
-Authorization: Token {{token}}
-
-###
-GET /api/articles/how-to-train-your-dragon-af-c/comments
-host: {{host}}
-content-type: {{contentType}}
-Authorization: Token {{token}}
-
-###
-POST  /api/articles/how-to-train-your-dragon-af-c/comments
-host: {{host}}
-content-type: {{contentType}}
-Authorization: Token {{token1}}
-
-{   
-    "comment":{
-    "body":"comments to articles"
+{
+  "user":{
+    "email": "test@qq.com",
+    "username":"test1"
+  }
 }
-}
-
-###
-GET /api/tags
-host: {{host}}
-content-type: {{contentType}}
-
-###

@@ -59,7 +59,7 @@ function addatmng() {
     password: document.getElementById("pwd").value,
     image: localStorage.img
   }
-  if (Email.value == "" || User.value == "" || Img.value == "" || Password.value == "") {
+  if (Email.value == "" || User.value == "" || Password.value == "") {
     alert("邮箱、用户名、头像或密码不能为空！");
   } else {
     axios.post(url, {

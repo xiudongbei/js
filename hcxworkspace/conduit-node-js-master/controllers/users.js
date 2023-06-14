@@ -8,7 +8,6 @@ module.exports.createUser = async (req,res) => {
         if(!req.body.user.username) throw new Error("Username is Required")
         if(!req.body.user.email) throw new Error("Email is Required")
         if(!req.body.user.password) throw new Error("Password is Required")
-        if(!req.body.user.image) throw new Error("Img is Required")
 
         const existingUser = await User.findByPk(req.body.user.email)
         if(existingUser)
@@ -67,10 +66,11 @@ module.exports.loginUser = async (req,res) => {
 
 module.exports.getUserByEmail = async (req,res) => {
     try{
-        const user = await User.findAll({ where: { email: req.user.email } })
-        if(!user){
-            throw new Error('No such user found')
-        }
+        const user = await User.findAll({
+            where: { email: req.body.user.email },
+            order: [['best', 'DESC']],
+            limit: 5
+        })
         return res.status(200).json({user})
     }catch(e){
         return res.status(404).json({
@@ -81,13 +81,15 @@ module.exports.getUserByEmail = async (req,res) => {
 
 module.exports.deleteUserByEmail = async (req,res) => {
     try{
-        const count = await User.destroy({ 
-            where: { email: req.body.user.email }
-        });
-        if(!count){
-            throw new Error('No such user found')
+        if (req.body.user.username) {
+            console.log(req.body.user)
+            const user = await User.findByPk(req.body.user.email);
+            if (user) {
+              const result = await user.destroy();
+              console.log(result);
+            }
+            return res.status(200).json({user})
         }
-        return res.status(200).json({count})
     }catch(e){
         return res.status(404).json({
             errors: { body: [ e.message ] }
@@ -173,6 +175,7 @@ module.exports.updateName = async (req,res) => {
         })
     }
 }
+
 module.exports.updateUserDetails = async (req,res) => {
     try{
         const user = await User.findByPk(req.user.email)
